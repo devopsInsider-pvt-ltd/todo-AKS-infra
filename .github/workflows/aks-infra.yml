@@ -1,0 +1,16 @@
+name: aks-infra-workflow
+
+on: workflow_dispatch
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  terraform-init-job:
+    name: init-plan-name
+    runs-on: self-hosted
+
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v5.0.0
