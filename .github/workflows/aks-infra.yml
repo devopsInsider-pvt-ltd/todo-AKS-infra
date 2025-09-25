@@ -64,6 +64,35 @@ jobs:
       id: apply
       working-directory: env/dev
       run: terraform apply --auto-approve
+
+  terraform-destroy:
+    name: terraform-destroy
+    runs-on: self-hosted
+    needs: terraform-apply-job
+
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v5.0.0
+
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: 337dc1c4-6152-437b-bf19-27e7afcbb3ce
+        tenant-id: 4c59b2ec-4a3e-45a0-aa5c-b6743bcffc2c
+        subscription-id: e5776277-6d0c-4f2c-97d3-a378ac7502d6
+
+    - name: terraform init
+      id: init
+      working-directory: env/dev
+      run: terraform init
+
+    - name: terraform destroy
+      id: destroy
+      working-directory: env/dev
+      run: terraform restore --auto-approve
+
+    
+    
       
 
     
