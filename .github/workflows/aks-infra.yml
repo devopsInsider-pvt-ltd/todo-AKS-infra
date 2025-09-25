@@ -89,7 +89,7 @@ jobs:
     - name: terraform destroy
       id: destroy
       working-directory: env/dev
-      run: terraform destory --auto-approve
+      run: terraform destroy --auto-approve
 
     
     
