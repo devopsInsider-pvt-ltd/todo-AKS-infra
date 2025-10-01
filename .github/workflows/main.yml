@@ -37,7 +37,7 @@ jobs:
       run: terraform plan
 
 
-  manualapprovaljob:
+  ApprovalApplyjob:
     name: manualApproval
     needs: terraform_init-job-id
     environment: dev
@@ -46,6 +46,25 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v5.0.0
+
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: 0466e905-6dc2-4f7b-9096-ef0bc7349611
+        tenant-id: 4c59b2ec-4a3e-45a0-aa5c-b6743bcffc2c
+        subscription-id: e5776277-6d0c-4f2c-97d3-a378ac7502d6
+
+    - name: Terraform init
+      id: init
+      working-directory: env/dev
+      run: terraform init
+
+    - name: terraform apply
+      id: apply
+      working-directory: env/dev
+      run: terraform apply
+
+    
     
     
 
