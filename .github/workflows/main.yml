@@ -29,7 +29,7 @@ jobs:
     - name: Terraform init
       id: init
       working-directory: env/dev
-      run: terrafrom init
+      run: terraform init
 
     - name: Terraform plan
       id: plan
