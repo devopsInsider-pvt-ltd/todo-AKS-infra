@@ -20,5 +20,39 @@ jobs:
         client-id: 0466e905-6dc2-4f7b-9096-ef0bc7349611
         tenant-id: 4c59b2ec-4a3e-45a0-aa5c-b6743bcffc2c
         subscription-id: e5776277-6d0c-4f2c-97d3-a378ac7502d6
+    - name:   Terraform fmt
+      id: fmt
+      working-directory: env/dev
+      run: terraform fmt 
+      continue-on-error: true
+
+    - name: Terraform init
+      id: init
+      working-directory: env/dev
+      run: terrafrom init
+
+    - name: Terraform plan
+      id: plan
+      working-directory: env/dev
+      run: terraform plan
+
+
+  manualapprovaljob:
+    name: manualApproval
+    needs: terraform_init-job-id
+    environment: dev
+    runs-on: self-hosted
+    
+    
+
+  
+  
+
+
+
+
+      
+
+    
 
   
